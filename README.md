@@ -19,10 +19,10 @@ or
 ./gradlew :graphql-api-example:bootRun
 ```
 
-Open postman and make post request on 
+In order to access open your browser and enter the url `http://localhost:9090/graphiql` 
 
-`http://localhost:9090/graphiql` with request body
-
+Sample Request body
+ 
 ```
 {
   userById(id: 1){
@@ -32,3 +32,5 @@ Open postman and make post request on
   }
 }
 ```
+
+You can use `ctrl + space` key to use autocomplete
