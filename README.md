@@ -1,6 +1,12 @@
 # GraphQL with SpringBoot
 This project demonstrate GraphQL integration with spring boot.
 
+## graphql-db-example
+Demonstrate fetch data from database and serves the request.
+
+## graphql-api-example
+This example fetch data using API and servers the incoming request.
+
 ### How to use
 
 ```bash
