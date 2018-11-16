@@ -1,7 +1,6 @@
 package demo.graphql.common.services;
 
 import demo.graphql.common.repositories.UserRepository;
-import graphql.GraphQL;
 import graphql.schema.DataFetcher;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
@@ -11,14 +10,14 @@ import graphql.schema.idl.TypeDefinitionRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
-@Component
+@Configuration
 public class GraphQLService
 {
 
@@ -40,17 +39,14 @@ public class GraphQLService
     @Qualifier("userIdInFetcher")
     private DataFetcher userIdInFetcher;
 
-    private GraphQL graphQL;
-
-    @PostConstruct
-    public void init() throws IOException
+    @Bean
+    public GraphQLSchema graphQLSchema() throws IOException
     {
         File schemaFile = resource.getFile();
 
         TypeDefinitionRegistry typeDefinitionRegistry = new SchemaParser().parse(schemaFile);
         RuntimeWiring runtimeWiring = prepareRuntimeWiring();
-        GraphQLSchema graphQLSchema = new SchemaGenerator().makeExecutableSchema(typeDefinitionRegistry, runtimeWiring);
-        graphQL = GraphQL.newGraphQL(graphQLSchema).build();
+        return new SchemaGenerator().makeExecutableSchema(typeDefinitionRegistry, runtimeWiring);
     }
 
     private RuntimeWiring prepareRuntimeWiring()
@@ -63,8 +59,4 @@ public class GraphQLService
             .build();
     }
 
-    public GraphQL getGraphQL()
-    {
-        return graphQL;
-    }
 }
