@@ -1,5 +1,5 @@
 # GraphQL with SpringBoot
-This project demonstrate the graphql integration with spring boot.
+This project demonstrate GraphQL integration with spring boot.
 
 ### How to use
 

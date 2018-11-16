@@ -1,13 +1,15 @@
-package demo.graphql.services;
+package demo.graphql.common.services;
 
 import demo.graphql.common.repositories.UserRepository;
 import graphql.GraphQL;
+import graphql.schema.DataFetcher;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -26,6 +28,18 @@ public class GraphQLService
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    @Qualifier("allUsersFetcher")
+    private DataFetcher allUsersFetcher;
+
+    @Autowired
+    @Qualifier("userByIdFetcher")
+    private DataFetcher userByIdFetcher;
+
+    @Autowired
+    @Qualifier("userIdInFetcher")
+    private DataFetcher userIdInFetcher;
+
     private GraphQL graphQL;
 
     @PostConstruct
@@ -42,9 +56,9 @@ public class GraphQLService
     private RuntimeWiring prepareRuntimeWiring()
     {
         return RuntimeWiring.newRuntimeWiring()
-            .type("Query", typeWiring -> typeWiring.dataFetcher("allUsers", env -> userRepository.findAll())
-                .dataFetcher("userById", env -> userRepository.getOne(env.getArgument("id")))
-                .dataFetcher("userByIdIn", env -> userRepository.findAllById(env.getArgument("ids")))
+            .type("Query", typeWiring -> typeWiring.dataFetcher("allUsers", allUsersFetcher)
+                .dataFetcher("userById", userByIdFetcher)
+                .dataFetcher("userByIdIn", userIdInFetcher)
             )
             .build();
     }

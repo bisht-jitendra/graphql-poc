@@ -1,4 +1,4 @@
-package demo.graphql.controllers;
+package demo.graphql.resources;
 
 import demo.graphql.common.services.GraphQLService;
 import org.springframework.beans.factory.annotation.Autowired;
