@@ -16,6 +16,6 @@ public class UserByIdFetcher implements DataFetcher<User>
     @Override
     public User get(DataFetchingEnvironment environment)
     {
-        return userRepository.getOne(environment.getArgument("id"));
+        return userRepository.findById(environment.getArgument("id")).orElse(new User());
     }
 }
