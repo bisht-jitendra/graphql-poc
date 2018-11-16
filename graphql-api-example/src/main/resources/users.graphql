@@ -3,7 +3,7 @@ schema {
 }
 
 type Query {
-    allUsers: [User]
+    allUsers(skip: Int = 0, first: Int = 0): [User]
     userById(id: Long): User
     userByIdIn(ids: [Long]): [User]
 }
