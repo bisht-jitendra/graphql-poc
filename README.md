@@ -1,4 +1,4 @@
-# graphql-poc
+# GraphQL with SpringBoot
 This project demonstrate the graphql integration with spring boot.
 
 ### How to use
