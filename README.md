@@ -13,7 +13,7 @@ This example fetch data using API and servers the incoming request.
 ./gradlew :graphql-db-example:bootRun
 ```
 
-or
+and
 
 ```bash
 ./gradlew :graphql-api-example:bootRun

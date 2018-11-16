@@ -8,6 +8,10 @@ type Query {
     userByIdIn(ids: [Long]): [User]
 }
 
+type Mutation {
+    createUser(name: String, age: Int, address: String): User
+}
+
 type User {
     id: Long
     name: String

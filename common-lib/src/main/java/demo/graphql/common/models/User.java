@@ -1,6 +1,7 @@
 package demo.graphql.common.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 public class User
 {
     @Id
+    @GeneratedValue
     private long id;
     private String name;
     private Integer age;
@@ -25,6 +27,13 @@ public class User
         this.age = age;
         this.address = address;
         this.createdAt = createdAt;
+    }
+
+    public User(String name, Integer age, String address)
+    {
+        this.name = name;
+        this.age = age;
+        this.address = address;
     }
 
     public long getId()
