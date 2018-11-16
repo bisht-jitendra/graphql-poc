@@ -1,0 +1,5 @@
+rootProject.name = 'graphql-poc'
+
+include(':common-lib')
+include(':graphql-api-example')
+include(':graphql-db-example')
