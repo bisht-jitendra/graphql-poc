@@ -33,6 +33,6 @@ allprojects {
 
     ext {
         graphql_spring_boot_starter_version = "5.0.2"
-        graphql_java_tools_version = "11.0"
+        graphql_java_tools_version = "5.2.3"
     }
 }

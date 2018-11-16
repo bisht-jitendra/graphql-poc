@@ -5,7 +5,7 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("com.graphql-java:graphql-spring-boot-starter:${graphql_spring_boot_starter_version}")
-//    compile("com.graphql-java:graphql-java-tools:${graphql_java_tools_version}")
+    compile("com.graphql-java:graphql-java-tools:${graphql_java_tools_version}")
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
